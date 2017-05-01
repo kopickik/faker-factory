@@ -15,6 +15,16 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
-    "faker": "^4.1.0"
+    "chai": "^3.5.0",
+    "faker": "^4.1.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-develop": "^0.4.0",
+    "jasmine": "^2.6.0",
+    "load-grunt-tasks": "^3.5.2",
+    "request": "^2.81.0",
+    "time-grunt": "^1.4.0"
   }
 }
