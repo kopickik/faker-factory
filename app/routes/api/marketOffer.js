@@ -4,7 +4,6 @@ const express = require('express');
 const router = express.Router();
 const faker = require('faker');
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
   let jsonResponse = [];
   for (let i = 0; i < 10; i++) {

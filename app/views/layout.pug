@@ -8,5 +8,7 @@ html(lang='en')
     block js
       if ENV_DEVELOPMENT
         script(src='http://localhost:35729/livereload.js')
+    <!-- Automatically include Bower components. Use the "sources" object in your bower.json to specify which source files are which. -->
+    <!-- include: "type": "css", "bower": "bootstrap" -->
   body
     block content

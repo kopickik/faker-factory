@@ -1,0 +1,23 @@
+{
+  "name": "faker-factory",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Kyle Kopicki <kkopick1@ford.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-mocks": "^1.6.4",
+    "animate.css": "^3.5.2",
+    "bootstrap": "^3.3.7"
+  }
+}

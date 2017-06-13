@@ -4,28 +4,83 @@ var request = require('request');
 
 module.exports = function (grunt) {
 
+  // Add Source Files to Index
+  grunt.loadNpmTasks('grunt-include-source');
+
+  // Time how long tasks take.  Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
   var liveReloadPort = 35729,
-  files;
+      appConfig = {
+        app: 'app',
+        debug: 'debug',
+        dist: 'dist'
+      },
+      files;
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    yeoman: appConfig,
+
+    includeSource: {
+      options: {
+        basePath: 'app',
+        baseUrl: '/',
+      },
+      server: {
+        files: {
+          '.tmp/index.html': '<%= yeoman.app %>/views/layout.pug'
+        }
+      },
+      dist: {
+        files: {
+          '<%= yeoman.dist %>/index.html': '<%= yeoman.app %>/views/layout.pug'
+        }
+      },
+      app: {
+        files: {
+          '<%= yeoman.app %>/index.html' : '<%= yeoman.app %>/views/layout.pug'
+        }
+      }
+    },
+
     develop: {
       server: {
         file: 'bin/www'
       }
     },
     sass: {
+      debug: {
+        files: [{
+          expand: false,
+          cwd: 'app/public/styles/sass',
+          src: ['main.scss'],
+          dest: 'app/public/styles',
+          ext: '.css',
+          lineNumbers: true
+        }]
+      },
       dist: {
-        files: {
-          'app/public/stylesheets/main.css': 'app/public/stylesheets/sass/main.scss'
-        }
+        files: [{
+          expand: true,
+          cwd: 'app/public/styles/sass',
+          src: ['*.scss'],
+          dest: 'app/public/styles',
+          ext: '.css',
+          sourcemap: false,
+          lineNumbers: false
+        }]
       }
     },
     watch: {
+      bower: {
+        files: ['bower.json'],
+        tasks: ['wiredep', 'includeSource:app']
+      },
       options: {
         nospawn: true,
         livereload: liveReloadPort
@@ -46,7 +101,7 @@ module.exports = function (grunt) {
       },
       css: {
         files: [
-        'app/public/stylesheets/sass/*.scss'
+        'app/public/styles/sass/*.scss'
         ],
         tasks: ['sass'],
         options: {
